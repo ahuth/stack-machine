@@ -11,7 +11,7 @@ export default function App() {
   return (
     <main className="flex gap-2 p-4">
       <div className="flex flex-col gap-2">
-        <Controls />
+        <Controls dispatch={dispatch} />
         <Editor dispatch={dispatch} state={state} />
         <Instructions />
       </div>
