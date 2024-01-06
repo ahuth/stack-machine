@@ -1,6 +1,7 @@
 import {useReducer} from 'react';
 import Controls from './Controls';
 import Editor from './Editor';
+import Instructions from './Instructions';
 import {reducer, initialState} from '../reducer';
 
 export default function App() {
@@ -10,6 +11,7 @@ export default function App() {
     <main className="flex flex-col gap-2 p-4">
       <Controls />
       <Editor dispatch={dispatch} state={state} />
+      <Instructions />
     </main>
   );
 }

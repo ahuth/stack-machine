@@ -8,7 +8,9 @@ type Props = {
 export default function Editor({dispatch, state}: Props) {
   return (
     <div className="flex flex-col gap-2">
-      <label htmlFor="editor">Editor</label>
+      <label htmlFor="editor">
+        <h2>Editor</h2>
+      </label>
       <textarea
         className="border border-b-slate-950 w-56"
         id="editor"
