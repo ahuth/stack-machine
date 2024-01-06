@@ -8,7 +8,9 @@
     "dev": "vite",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "start": "npm run dev"
+    "start": "npm run dev",
+    "types": "tsc --noEmit",
+    "validate": "npm run lint && npm run types"
   },
   "dependencies": {
     "react": "^18.2.0",
