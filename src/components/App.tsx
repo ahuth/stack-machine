@@ -1,7 +1,9 @@
+import Editor from './Editor';
+
 export default function App() {
   return (
-    <>
-      <h1 className="bg-fuchsia-300">hello world</h1>
-    </>
+    <main className="p-4">
+      <Editor />
+    </main>
   );
 }
