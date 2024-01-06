@@ -1,7 +1,7 @@
 import type {Dispatch as ReactDispatch} from 'react';
 
 export const initialState = {
-  code: '',
+  code: 'push 1\npush 2\nadd',
   stack: [] as number[],
 };
 
