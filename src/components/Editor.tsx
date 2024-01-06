@@ -12,7 +12,7 @@ export default function Editor({dispatch, state}: Props) {
         <h2>Editor</h2>
       </label>
       <textarea
-        className="border border-b-slate-950 w-56"
+        className="w-56 border border-b-slate-950"
         id="editor"
         onChange={(e) => dispatch({type: 'CODE_TYPED', value: e.target.value})}
         rows={10}
