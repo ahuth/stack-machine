@@ -2,6 +2,7 @@ import type {Dispatch as ReactDispatch} from 'react';
 
 export const initialState = {
   code: '',
+  stack: [] as number[],
 };
 
 export type State = typeof initialState;
