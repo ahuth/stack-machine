@@ -1,7 +1,7 @@
 export default function App() {
   return (
     <>
-      <h1>hello world</h1>
+      <h1 className="bg-fuchsia-300">hello world</h1>
     </>
   );
 }
