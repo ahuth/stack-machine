@@ -21,9 +21,15 @@ export function reducer(state: State, action: Action) {
     case 'CODE_TYPED':
       return {...state, code: action.value};
     case 'STEP_CLICKED': {
+      // First click, so no instructions are executed, yet.
       if (state.onLine == null) {
         return {...state, instructions: parse(state.code), onLine: 0};
       }
+      // No more instructions to execute.
+      if (state.onLine === state.instructions.length) {
+        return state;
+      }
+      // Execute an instruction.
       return {
         ...state,
         onLine: state.onLine + 1,
