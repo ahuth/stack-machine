@@ -7,6 +7,8 @@ type Props = {
 };
 
 export default function Editor({dispatch, state}: Props) {
+  const disabled = state.onLine != null;
+
   return (
     <div className="flex flex-col gap-2">
       <label htmlFor="editor">
@@ -19,7 +21,11 @@ export default function Editor({dispatch, state}: Props) {
           </div>
         </div>
         <textarea
-          className="w-56 border border-b-slate-950"
+          className={clsx(
+            'w-56 border border-b-slate-950',
+            disabled && 'cursor-not-allowed bg-slate-200',
+          )}
+          disabled={disabled ? true : undefined}
           id="editor"
           onChange={(e) =>
             dispatch({type: 'CODE_TYPED', value: e.target.value})
