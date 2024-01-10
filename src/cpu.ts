@@ -34,6 +34,8 @@ export function parse(code: string): Instruction[] {
       output.push({op: 'add'});
     } else if (trimmed === 'sub') {
       output.push({op: 'sub'});
+    } else if (trimmed === 'drop') {
+      output.push({op: 'drop'});
     }
   }
 
@@ -42,12 +44,17 @@ export function parse(code: string): Instruction[] {
 
 export function execute(instruction: Instruction, stack: number[]): number[] {
   switch (instruction.op) {
-    case 'push':
-      return [instruction.operand, ...stack];
     case 'add': {
       const [a, b, ...rest] = stack;
       return [a + b, ...rest];
     }
+    case 'drop': {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const [_, ...rest] = stack;
+      return rest;
+    }
+    case 'push':
+      return [instruction.operand, ...stack];
     case 'sub': {
       const [a, b, ...rest] = stack;
       return [a - b, ...rest];

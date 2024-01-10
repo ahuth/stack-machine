@@ -2,7 +2,7 @@ import type {Dispatch as ReactDispatch} from 'react';
 import {parse, execute, type Instruction} from './cpu';
 
 export const initialState = {
-  code: 'push 1\npush 2\npush 3\nadd\nsub',
+  code: 'push 1\npush 2\npush 3\nadd\npush 4\nsub\nadd\ndrop',
   instructions: [] as Instruction[],
   onLine: null as number | null,
   stack: [] as number[],
