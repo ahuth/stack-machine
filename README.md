@@ -1,3 +1,3 @@
 # stack-machine
 
-wip
+Basic [stack machine](https://en.wikipedia.org/wiki/Stack_machine) simulation.
