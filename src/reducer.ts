@@ -19,7 +19,7 @@ type Action =
 export function reducer(state: State, action: Action) {
   switch (action.type) {
     case 'CODE_TYPED':
-      return {...state, code: action.value};
+      return {...state, onLine: null, code: action.value};
     case 'STEP_CLICKED': {
       // First click, so no instructions are executed, yet.
       if (state.onLine == null) {
