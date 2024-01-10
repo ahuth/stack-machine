@@ -32,6 +32,8 @@ export function parse(code: string): Instruction[] {
       output.push({op: 'push', operand});
     } else if (trimmed === 'add') {
       output.push({op: 'add'});
+    } else if (trimmed === 'sub') {
+      output.push({op: 'sub'});
     }
   }
 
@@ -45,6 +47,10 @@ export function execute(instruction: Instruction, stack: number[]): number[] {
     case 'add': {
       const [a, b, ...rest] = stack;
       return [a + b, ...rest];
+    }
+    case 'sub': {
+      const [a, b, ...rest] = stack;
+      return [a - b, ...rest];
     }
     default:
       return stack;
