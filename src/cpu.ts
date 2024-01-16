@@ -12,6 +12,14 @@ export type Instruction =
   | {op: 'add'; cond?: Condition}
   | {op: 'sub'; cond?: Condition};
 
+// 1. Optional + or - for conditions
+// 2. Instruction
+// 3. Operands, which is a space-separated list of numbers
+//
+//                   1        2           3
+//                ┏━━┻━━┓   ┏━┻━┓   ┏━━━━━┻━━━━━┓
+const pattern = /^([+-])?\s*(\w+)\s*((?:\d+\s*)*)$/;
+
 export function parse(code: string): Instruction[] {
   const lines = code.split('\n');
   const output: Instruction[] = [];
@@ -21,21 +29,29 @@ export function parse(code: string): Instruction[] {
 
     if (!trimmed) continue;
 
-    if (trimmed.startsWith('push')) {
-      const matches = trimmed.match(/push (\d+)/);
+    const matches = trimmed.match(pattern);
 
-      if (!matches) {
-        throw new Error('Missing operand');
+    if (!matches) {
+      throw new Error('Invalid instruction!');
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [_fullMatch, cond, operator, raw_operands = ''] = matches;
+    const operands = raw_operands.split(/\s/).map(Number);
+
+    switch (operator) {
+      case 'push': {
+        output.push({
+          cond: cond as Condition,
+          op: operator,
+          operand: operands[0],
+        });
+        break;
       }
-
-      const operand = Number(matches[1]);
-      output.push({op: 'push', operand});
-    } else if (trimmed === 'add') {
-      output.push({op: 'add'});
-    } else if (trimmed === 'sub') {
-      output.push({op: 'sub'});
-    } else if (trimmed === 'drop') {
-      output.push({op: 'drop'});
+      case 'add':
+      case 'sub':
+      case 'drop':
+        output.push({cond: cond as Condition, op: operator});
     }
   }
 
