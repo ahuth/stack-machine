@@ -10,7 +10,8 @@ export type Instruction =
   | {op: 'lt'; cond?: Condition}
   | {op: 'le'; cond?: Condition}
   | {op: 'add'; cond?: Condition}
-  | {op: 'sub'; cond?: Condition};
+  | {op: 'sub'; cond?: Condition}
+  | {op: 'skip'; cond?: Condition};
 
 // 1. Optional + or - for conditions
 // 2. Instruction
@@ -27,7 +28,10 @@ export function parse(code: string): Instruction[] {
   for (const line of lines) {
     const trimmed = line.replace(/#.+$/, '').trim();
 
-    if (!trimmed) continue;
+    if (!trimmed) {
+      output.push({op: 'skip'});
+      continue;
+    }
 
     const matches = trimmed.match(pattern);
 
