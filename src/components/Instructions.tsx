@@ -1,6 +1,12 @@
 export default function Instructions() {
   return (
     <section>
+      <a
+        className="text-blue-700 underline visited:text-purple-700"
+        href="https://github.com/ahuth/stack-machine"
+      >
+        source
+      </a>
       <h2>Reference</h2>
       <section className="ml-2">
         <h3>Format</h3>
@@ -14,9 +20,7 @@ export default function Instructions() {
           <li>eq</li>
           <li>ne</li>
           <li>gt</li>
-          <li>ge</li>
           <li>lt</li>
-          <li>le</li>
           <li>add</li>
           <li>sub</li>
           <li>+/- prefix</li>
