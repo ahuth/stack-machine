@@ -51,6 +51,10 @@ export function parse(code: string): Instruction[] {
       case 'add':
       case 'sub':
       case 'drop':
+      case 'eq':
+      case 'ne':
+      case 'gt':
+      case 'lt':
         output.push({cond: cond as Condition, op: operator});
     }
   }
@@ -90,6 +94,30 @@ export function execute(instruction: Instruction, stack: number[]): number[] {
     case 'sub': {
       const [a, b, ...rest] = stack;
       return [a - b, ...rest];
+    }
+    case 'eq': {
+      const [a, b, ...rest] = stack;
+      return [a === b ? 1 : 0, ...rest];
+    }
+    case 'ne': {
+      const [a, b, ...rest] = stack;
+      return [a !== b ? 1 : 0, ...rest];
+    }
+    case 'gt': {
+      const [a, b, ...rest] = stack;
+      return [a > b ? 1 : 0, ...rest];
+    }
+    case 'ge': {
+      const [a, b, ...rest] = stack;
+      return [a >= b ? 1 : 0, ...rest];
+    }
+    case 'lt': {
+      const [a, b, ...rest] = stack;
+      return [a < b ? 1 : 0, ...rest];
+    }
+    case 'le': {
+      const [a, b, ...rest] = stack;
+      return [a <= b ? 1 : 0, ...rest];
     }
     default:
       return stack;

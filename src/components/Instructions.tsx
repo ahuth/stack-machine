@@ -20,7 +20,9 @@ export default function Instructions() {
           <li>eq</li>
           <li>ne</li>
           <li>gt</li>
+          <li>ge</li>
           <li>lt</li>
+          <li>le</li>
           <li>add</li>
           <li>sub</li>
           <li>+/- prefix</li>
