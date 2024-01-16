@@ -25,7 +25,6 @@ export default function Instructions() {
           <li>le</li>
           <li>add</li>
           <li>sub</li>
-          <li>+/- prefix</li>
         </ul>
       </section>
     </section>
