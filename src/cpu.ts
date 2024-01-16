@@ -25,7 +25,7 @@ export function parse(code: string): Instruction[] {
   const output: Instruction[] = [];
 
   for (const line of lines) {
-    const trimmed = line.replace('#.+$', '').trim();
+    const trimmed = line.replace(/#.+$/, '').trim();
 
     if (!trimmed) continue;
 
