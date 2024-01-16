@@ -66,12 +66,18 @@ export function parse(code: string): Instruction[] {
   return output;
 }
 
-export function execute(instruction: Instruction, stack: number[]): number[] {
+export function execute(
+  lineNumber: number,
+  instructions: Instruction[],
+  stack: number[],
+): [nextStack: number[], nextLine: number] {
+  const instruction = instructions[lineNumber];
+
   // Truthy conditional
   if (instruction.cond === '+') {
     // If falsey, don't execute the instruction.
     if (stack[0] === 0) {
-      return stack;
+      return [stack, lineNumber + 1];
     }
   }
 
@@ -79,51 +85,61 @@ export function execute(instruction: Instruction, stack: number[]): number[] {
   if (instruction.cond === '-') {
     // If truthy, don't execute the instruction.
     if (stack[0] > 0) {
-      return stack;
+      return [stack, lineNumber + 1];
     }
   }
 
   switch (instruction.op) {
     case 'add': {
       const [a, b, ...rest] = stack;
-      return [a + b, ...rest];
+      const nextStack = [a + b, ...rest];
+      return [nextStack, lineNumber + 1];
     }
     case 'drop': {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const [_, ...rest] = stack;
-      return rest;
+      return [rest, lineNumber + 1];
     }
-    case 'push':
-      return [instruction.operand, ...stack];
+    case 'push': {
+      const nextStack = [instruction.operand, ...stack];
+      return [nextStack, lineNumber + 1];
+    }
     case 'sub': {
       const [a, b, ...rest] = stack;
-      return [a - b, ...rest];
+      const nextStack = [a - b, ...rest];
+      return [nextStack, lineNumber + 1];
     }
     case 'eq': {
       const [a, b, ...rest] = stack;
-      return [a === b ? 1 : 0, ...rest];
+      const nextStack = [a === b ? 1 : 0, ...rest];
+      return [nextStack, lineNumber + 1];
     }
     case 'ne': {
       const [a, b, ...rest] = stack;
-      return [a !== b ? 1 : 0, ...rest];
+      const nextStack = [a !== b ? 1 : 0, ...rest];
+      return [nextStack, lineNumber + 1];
     }
     case 'gt': {
       const [a, b, ...rest] = stack;
-      return [a > b ? 1 : 0, ...rest];
+      const nextStack = [a > b ? 1 : 0, ...rest];
+      return [nextStack, lineNumber + 1];
     }
     case 'ge': {
       const [a, b, ...rest] = stack;
-      return [a >= b ? 1 : 0, ...rest];
+      const nextStack = [a >= b ? 1 : 0, ...rest];
+      return [nextStack, lineNumber + 1];
     }
     case 'lt': {
       const [a, b, ...rest] = stack;
-      return [a < b ? 1 : 0, ...rest];
+      const nextStack = [a < b ? 1 : 0, ...rest];
+      return [nextStack, lineNumber + 1];
     }
     case 'le': {
       const [a, b, ...rest] = stack;
-      return [a <= b ? 1 : 0, ...rest];
+      const nextStack = [a <= b ? 1 : 0, ...rest];
+      return [nextStack, lineNumber + 1];
     }
     default:
-      return stack;
+      return [stack, lineNumber + 1];
   }
 }

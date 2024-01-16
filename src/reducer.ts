@@ -30,10 +30,15 @@ export function reducer(state: State, action: Action) {
         return state;
       }
       // Execute an instruction.
+      const [nextStack, nextLine] = execute(
+        state.onLine,
+        state.instructions,
+        state.stack,
+      );
       return {
         ...state,
-        onLine: state.onLine + 1,
-        stack: execute(state.instructions[state.onLine], state.stack),
+        onLine: nextLine,
+        stack: nextStack,
       };
     }
     case 'STOP_CLICKED':
