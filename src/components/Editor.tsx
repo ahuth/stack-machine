@@ -22,7 +22,7 @@ export default function Editor({dispatch, state}: Props) {
         </div>
         <textarea
           className={clsx(
-            'w-56 border border-b-slate-950',
+            'w-56 bg-slate-700',
             disabled && 'cursor-not-allowed bg-slate-200',
           )}
           disabled={disabled ? true : undefined}

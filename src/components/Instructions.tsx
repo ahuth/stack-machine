@@ -2,7 +2,7 @@ export default function Instructions() {
   return (
     <section>
       <a
-        className="text-blue-700 underline visited:text-purple-700"
+        className="text-blue-500 underline visited:text-purple-500"
         href="https://github.com/ahuth/stack-machine"
       >
         source
