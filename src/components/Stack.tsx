@@ -8,13 +8,12 @@ export default function Stack({state}: Props) {
   return (
     <div>
       <h2>Stack</h2>
-      <ol className="border-t-4 border-indigo-500 font-mono">
+      <ol
+        className="list-inside list-decimal border-t-4 border-indigo-500 font-mono"
+        start={0}
+      >
         {state.stack.map((val, i) => {
-          return (
-            <div key={i}>
-              {i}: {val}
-            </div>
-          );
+          return <li key={i}>{val}</li>;
         })}
       </ol>
     </div>
