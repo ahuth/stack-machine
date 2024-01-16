@@ -59,6 +59,22 @@ export function parse(code: string): Instruction[] {
 }
 
 export function execute(instruction: Instruction, stack: number[]): number[] {
+  // Truthy conditional
+  if (instruction.cond === '+') {
+    // If falsey, don't execute the instruction.
+    if (stack[0] === 0) {
+      return stack;
+    }
+  }
+
+  // Falsey conditional
+  if (instruction.cond === '-') {
+    // If truthy, don't execute the instruction.
+    if (stack[0] > 0) {
+      return stack;
+    }
+  }
+
   switch (instruction.op) {
     case 'add': {
       const [a, b, ...rest] = stack;
