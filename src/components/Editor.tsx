@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import type {Dispatch, State} from '../reducer';
+import Controls from './Controls';
 
 type Props = {
   dispatch: Dispatch;
@@ -14,6 +15,7 @@ export default function Editor({dispatch, state}: Props) {
       <label htmlFor="editor">
         <h2>Editor</h2>
       </label>
+      <Controls dispatch={dispatch} />
       <div className="flex">
         <div className={clsx(state.onLine == null && 'invisible')}>
           <div className="relative" style={{top: (state.onLine ?? 0) * 24}}>

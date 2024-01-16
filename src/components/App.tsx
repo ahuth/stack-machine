@@ -1,5 +1,4 @@
 import {useReducer} from 'react';
-import Controls from './Controls';
 import Editor from './Editor';
 import Instructions from './Instructions';
 import Stack from './Stack';
@@ -11,7 +10,6 @@ export default function App() {
   return (
     <main className="flex h-screen gap-2 bg-black p-4 text-white ">
       <div className="flex flex-col gap-2">
-        <Controls dispatch={dispatch} />
         <Editor dispatch={dispatch} state={state} />
         <Instructions />
       </div>
