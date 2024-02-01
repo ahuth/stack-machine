@@ -3,6 +3,7 @@ import {parse, execute, type Instruction} from './cpu';
 
 export const initialState = {
   code: 'push 1\npush 2\npush 3\nadd\npush 4\nsub\nadd',
+  index: 0,
   instructions: [] as Instruction[],
   onLine: null as number | null,
   stack: [] as number[],
@@ -19,30 +20,27 @@ type Action =
 export function reducer(state: State, action: Action) {
   switch (action.type) {
     case 'CODE_TYPED':
-      return {...state, onLine: null, code: action.value};
+      return {...state, index: 0, onLine: null, code: action.value};
     case 'STEP_CLICKED': {
       // First click, so no instructions are executed, yet.
       if (state.onLine == null) {
         return {...state, instructions: parse(state.code), onLine: 0};
       }
       // No more instructions to execute.
-      if (state.onLine === state.instructions.length) {
+      if (state.index === state.instructions.length) {
         return state;
       }
       // Execute an instruction.
-      const [nextStack, nextLine] = execute(
-        state.onLine,
-        state.instructions,
-        state.stack,
-      );
+      const nextStack = execute(state.instructions[state.index], state.stack);
       return {
         ...state,
-        onLine: nextLine,
+        index: state.index + 1,
+        onLine: state.instructions[state.index + 1]?.line ?? state.onLine,
         stack: nextStack,
       };
     }
     case 'STOP_CLICKED':
-      return {...state, onLine: null, stack: []};
+      return {...state, index: 0, onLine: null, stack: []};
     default:
       return state;
   }
