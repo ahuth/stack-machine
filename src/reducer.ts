@@ -35,7 +35,7 @@ export function reducer(state: State, action: Action) {
       return {
         ...state,
         index: state.index + 1,
-        onLine: state.instructions[state.index + 1]?.line ?? state.onLine,
+        onLine: state.instructions[state.index + 1]?.line ?? state.onLine + 1,
         stack: nextStack,
       };
     }

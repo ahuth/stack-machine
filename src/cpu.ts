@@ -40,8 +40,7 @@ export function parse(code: string): Instruction[] {
       throw new Error('Invalid instruction!');
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [_fullMatch, cond, operator, raw_operands = ''] = matches;
+    const [, cond, operator, raw_operands = ''] = matches;
     const operands = raw_operands.split(/\s/).map(Number);
 
     switch (operator) {
