@@ -24,8 +24,9 @@ export default function Editor({dispatch, state}: Props) {
         </div>
         <textarea
           className={clsx(
-            'w-56 bg-slate-700',
-            disabled && 'cursor-not-allowed bg-slate-200',
+            'w-56',
+            !disabled && 'bg-slate-700',
+            disabled && 'cursor-not-allowed bg-slate-600',
           )}
           disabled={disabled ? true : undefined}
           id="editor"
