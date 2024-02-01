@@ -1,12 +1,12 @@
 import type {Dispatch as ReactDispatch} from 'react';
-import {parse, execute, type Instruction} from './cpu';
+import {parse, execute, type Stack, type Instruction} from './cpu';
 
 export const initialState = {
   code: 'push 1\npush 2\npush 3\nadd\npush 4\nsub\nadd',
   index: 0,
   instructions: [] as Instruction[],
   onLine: null as number | null,
-  stack: [] as number[],
+  stack: [] as Stack,
 };
 
 export type State = typeof initialState;

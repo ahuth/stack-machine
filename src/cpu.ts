@@ -1,4 +1,5 @@
-type Stack = number[];
+export type Stack = number[];
+
 type Condition = '+' | '-';
 
 export type Instruction =
